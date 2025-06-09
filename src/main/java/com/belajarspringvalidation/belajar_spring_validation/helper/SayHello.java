@@ -7,7 +7,7 @@ import jakarta.validation.constraints.NotBlank;
 
 @Validated
 @Component
-public class SayHello {
+public class SayHello implements ISayHello {
 
     public String sayHello(@NotBlank String name) {
         return "Hello " + name;
