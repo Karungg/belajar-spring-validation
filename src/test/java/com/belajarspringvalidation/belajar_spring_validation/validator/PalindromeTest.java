@@ -20,9 +20,25 @@ public class PalindromeTest {
 
     @Test
     void testPalindromeFail() {
-        Set<ConstraintViolation<Foo>> constraintViolations = validator.validate(new Foo("Kodok"));
+        Set<ConstraintViolation<Foo>> constraintViolations = validator.validate(new Foo("miftah"));
         Assertions.assertFalse(constraintViolations.isEmpty());
         Assertions.assertEquals(1, constraintViolations.size());
+    }
+
+    @Test
+    void testIsPalindrome() {
+        Set<ConstraintViolation<Foo>> constraintViolations = validator.validate(new Foo("kodok"));
+        Assertions.assertTrue(constraintViolations.isEmpty());
+        Assertions.assertEquals(0, constraintViolations.size());
+    }
+
+    @Test
+    void testPalindromeMessage() {
+        Set<ConstraintViolation<Foo>> constraintViolations = validator.validate(new Foo("miftah"));
+
+        String message = constraintViolations.stream().findFirst().get().getMessage();
+
+        Assertions.assertEquals("Data bukan palindrome", message);
     }
 
 }
